@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registartion</title>
+
+    <style>
+        .container {
+            width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        body {
+            font-family: Arial;
+        }
+
+        label{
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,textarea{
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        .btn{
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        button{
+            padding: 5px 10px;
+        }
+
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <form id="form">
+            <label>First Name</label>
+            <input type="text" id="fname" placeholder="Enter first name" required>
+
+            <label>Last Name</label>
+            <input type="text" id="lname" placeholder="Enter last name" required>
+            
+            <label>Username:</label>
+            <input type="text" id="username" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" id="confirm" placeholder="Confirm password" required>
+
+            <label>Phone number</label>
+            <input type="text" id="mobile" placeholder="Enter phone number" pattern="[0-9]{10}" required>
+
+            <label>Address</label>
+            <textarea id="address" rows="3" placeholder="Enter address" required></textarea>
+
+            <label>Pincode</label>
+            <input type="text" id="pincode" placeholder="Enter pincode" pattern="[0-9]{6}" required>
+
+             <div class="gender">
+                <input type="radio" name="gender" value="Male" required>Male
+                <input type="radio" name="gender" value="Female">Female
+                <input type="radio" name="gender" value="Other" >Other
+             </div>
+
+             <div class="btn">
+                <button type="submit">Register</button>
+                <button type="reset">Reset</button>
+             </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault(); // Prevent form submission
+        let pass=document.getElementById("password").value;
+        let cpass=document.getElementById("confirm").value;
+        if(pass!==cpass){
+            alert("Password and Confirm Password do not match!");
+            return;
+        }
+        let user={
+            fname: document.getElementById("fname").value,
+            lname: document.getElementById("lname").value,
+            username: document.getElementById("username").value,
+            password: pass,     
+            address: document.getElementById("address").value,
+            mobile: document.getElementById("mobile").value,
+            pincode: document.getElementById("pincode").value,
+            gender: document.querySelector('input[name="gender"]:checked').value,
+
+        }
+        let users=JSON.parse(localStorage.getItem("users")) || [];
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Registration successful!");
+        this.reset();
+        location.href="registeredusers.html";
+        
+    });
+        
+</script>
+</html>

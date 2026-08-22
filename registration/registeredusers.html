@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+</head>
+<body>
+    <h2>Registered Users</h2>
+    <div class="container">
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>First Name:</th>
+                    <th>Last Name:</th>
+                    <th>Username:</th>
+                    <th>Password:</th>
+                </tr>
+            </thead>
+            <tbody id="userbody">
+            
+            </tbody>
+        </table>
+
+    <script>
+        const userbody = document.getElementById('userbody');
+
+        userbody.innerHTML += `
+            <tr>
+                <td>${fname}</td>
+                <td>${lname}</td>
+                <td>${username}</td>
+                <td>${password}</td>
+            </tr>
+        `;
+    </script>
+</body>
+</html>
